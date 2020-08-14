@@ -1,0 +1,92 @@
+body {
+    background-color: #E8EAED;
+}
+#label-container {
+    color: black;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.cls {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.container {
+    display : flex;
+    justify-content: center;
+    align-items : center;
+    width: 100%;
+    height: 100vh;
+}
+
+.host {
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items : center;
+    /* max-height: 100%; */
+    width: 320px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    height: auto;
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.20);
+    margin-bottom: 30px;
+    background-color: #fff;
+}
+
+.section.no-border {
+    border: 0;
+}
+#header-row {
+    /* display: block; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+#body-container {
+    /* max-height: calc(100vh - 123px); */
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 25px;
+    width: 100%;
+}
+
+#section-output-icon {
+    position: absolute;
+    left: 50%;
+    top: -10px;
+    transform: translateX(-50%);
+}
+
+.section {
+    position: relative;
+    padding: 18px;
+    border-bottom: 1px solid #DADCE0;
+}
+
+#webcam-container {   
+    height: 200px;
+    width: 200px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items : center;
+}
+
+.sub-label {
+    height: 200px;
+
+}
