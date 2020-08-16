@@ -5,6 +5,8 @@
 const URL = "https://teachablemachine.withgoogle.com/models/o9D1N5TN/";
 
 let model, webcam, labelContainer, maxPredictions;
+let picked, opacity;
+const images = ['dog', 'cat', 'bear', 'dinosaur', 'rabbit']
 
 // Load the image model and setup the webcam
 async function init() {
@@ -43,6 +45,9 @@ async function init() {
         labelContainer.appendChild(cls)
     }
     // <div class="cls"><span>123</span><progress value="0" max="100"></progress></div>
+
+    picked = null
+    opacity = 0
 }
 
 async function loop() {
@@ -51,14 +56,38 @@ async function loop() {
     window.requestAnimationFrame(loop);
 }
 
+const setBackground = (index, prob) => {
+    if (prob < 70 || picked !== index) {
+        opacity = Math.max(opacity - 0.01, 0)
+    } else if (picked === index) {
+        opacity = Math.min(opacity + 0.01, 1)
+    }
+    document.body.style.backgroundColor = `rgba(255,255,255,${1 - opacity})`;
+    
+    if (opacity < 0.02) {
+        picked = index
+        document.body.style.backgroundImage = `url('./img/${images[picked]}.jpg')`;
+    }
+
+}
+
 // run the webcam image through the image model
 async function predict() {
+    let index = -1
+    let maxProb = -1
     // predict can take in an image, video or canvas html element
     const prediction = await model.predict(webcam.canvas);
     for (let i = 0; i < maxPredictions; i++) {
-
+        let prob = prediction[i].probability*100
         labelContainer.children[i].firstElementChild.innerHTML = prediction[i].className
-        labelContainer.children[i].lastElementChild.value = (prediction[i].probability*100)
+        labelContainer.children[i].lastElementChild.value = (prob)
 
+        if (prob > maxProb) {
+            index = i
+            maxProb = prob
+        }
     }
+
+    setBackground(index, maxProb)
 }
+

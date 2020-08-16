@@ -1,5 +1,11 @@
 body {
-    background-color: #E8EAED;
+    /* background-color: #E8EAED; */
+    /* background-image: url("./img/cat.jpg"); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: rgba(255,255,255,0.9);
+    background-blend-mode: lighten;
 }
 #label-container {
     color: black;
@@ -38,7 +44,7 @@ body {
     height: auto;
     box-shadow: 0px 2px 2px rgba(0,0,0,0.20);
     margin-bottom: 30px;
-    background-color: #fff;
+    background-color: rgba(0,0,0,0.2);
 }
 
 .section.no-border {
